@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/javaAssignment")
 public class GreetingController {
     
-   /* @Autowired
+   @Autowired
     private GreetingRepository greetingRepository;
     
     @GetMapping("/greetings")
@@ -25,5 +25,13 @@ public class GreetingController {
     @GetMapping("/greetings/{id}")
     public Optional<Greetings> getGreetingById(@PathVariable("id")Integer id){
         return greetingRepository.findById(id);
-    }*/
+    }
+    
+    public Greetings getGreetingByLang(String lang){
+        List<Greetings> greetings= (List<Greetings>) greetingRepository.findAll();
+        for(Greetings greeting:greetings)
+            if(greeting.getLanguage().equalsIgnoreCase(lang))
+                return greeting;
+        return null;
+    }
 }
