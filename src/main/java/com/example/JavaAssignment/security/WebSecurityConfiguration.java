@@ -1,8 +1,8 @@
 package com.example.JavaAssignment.security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,6 +20,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{ //5.
         http
                 .authorizeRequests()
                 .antMatchers("/","/home").permitAll()
+                //.antMatchers("/adminPage").hasAuthority("user")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -28,7 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{ //5.
                 .and()
                 .logout()
                 .permitAll();
-    }
+    } 
     
     @Bean
     @Override
@@ -42,4 +43,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{ //5.
         return new InMemoryUserDetailsManager(user);
     }
     
+   
 }

@@ -20,6 +20,6 @@ public class HelloRestController {
    @GetMapping("/helloo") //4.task
    public String helloPage(@RequestParam(value="lang") String language){
        Greetings greetings=greetingController.getGreetingByLang(language);
-       return "Helo World on " + greetings.getLanguage()+ "language is: " + greetings.getGreeting();
+       return "Helo World on " + greetings.getLanguage()+ " language is: " + greetings.getGreeting();
    }
 }
