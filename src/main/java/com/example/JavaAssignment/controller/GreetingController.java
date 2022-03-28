@@ -4,34 +4,29 @@ import com.example.JavaAssignment.models.Greetings;
 import com.example.JavaAssignment.service.GreetingRepository;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+
+@RestController
 //@RequestMapping("/greetings")
 public class GreetingController {
     
    @Autowired
     GreetingRepository greetingRepository;
    
-   @RequestMapping("/")
-   public String home(){
-       return "home.html";
-   }
-   
-  /* @GetMapping("/getGreetings")
+  @GetMapping(path="/getGreetings")
     private List<Greetings> getAllGreetings(){
         return (List<Greetings>) greetingRepository.findAll();
     }
            
-    @GetMapping("/greetings/{id}")
+    /* @GetMapping("/greetings/{id}")
     public Optional<Greetings> getGreetingById(@PathVariable("id")Integer id){
         return greetingRepository.findById(id);
     }
@@ -46,8 +41,10 @@ public class GreetingController {
     
     @RequestMapping(value="/addGreeting", method=RequestMethod.POST)
     public String addGreeting(@RequestParam("greeting")String greeting, @RequestParam("language") String language){
-        Greetings greetings=new Greetings(greeting, language);
+        Greetings greetings=new Greetings();
+        greetings.setGreeting(greeting);
+        greetings.setLanguage(language);
         greetingRepository.save(greetings);
-        return "home.html";
+        return "Saved!";
     }
 }
