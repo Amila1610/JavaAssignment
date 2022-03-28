@@ -8,4 +8,4 @@ INSERT INTO GREETINGS VALUES
                              (7,'Hej Verden','Danish'),
                              (8,'Dia Duit Ar Domhan','Irish'),
                              (9,'Hola Mundo','Spanish'),
-                             (10,'Hej Varlden','Šwedish');
+                             (10,'Hej Varlden','Swedish');

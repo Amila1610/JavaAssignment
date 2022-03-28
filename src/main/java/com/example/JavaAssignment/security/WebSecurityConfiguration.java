@@ -23,12 +23,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{ //5.
                 //.antMatchers("/adminPage").hasAuthority("user")
                 .anyRequest().authenticated()
                 .and()
+                .csrf().disable()
                 .formLogin()
                 .loginPage("/secure")
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll();
+        http.headers().frameOptions().disable();
     } 
     
     @Bean

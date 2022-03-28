@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
@@ -42,9 +44,9 @@ public class GreetingController {
         return null;
     }
     
-    @RequestMapping("/addGreeting")
-    public String addGreeting(Greetings greetings){
-        
+    @RequestMapping(value="/addGreeting", method=RequestMethod.POST)
+    public String addGreeting(@RequestParam("greeting")String greeting, @RequestParam("language") String language){
+        Greetings greetings=new Greetings(greeting, language);
         greetingRepository.save(greetings);
         return "home.html";
     }

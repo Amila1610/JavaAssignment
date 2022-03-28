@@ -19,8 +19,8 @@ public class Greetings {
     public Greetings() {
     }
 
-    public Greetings(Integer id, String greeting, String language) {
-        this.id = id;
+    public Greetings(String greeting, String language) {
+       
         this.greeting = greeting;
         this.language = language;
     }
