@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/greetings")
+//@RequestMapping("/greetings")
 public class GreetingController {
     
     @Autowired
@@ -38,12 +38,12 @@ public class GreetingController {
     }
     
     @RequestMapping(value="/addGreeting", method=RequestMethod.POST)
-    public String addGreeting(@RequestParam("greeting")String greeting, @RequestParam("language") String language){
+    public List<Greetings> addGreeting(@RequestParam("greeting")String greeting, @RequestParam("language") String language){
         Greetings greetings=new Greetings();
         greetings.setGreeting(greeting);
         greetings.setLanguage(language);
         greetingService.saveOrUpdate(greetings);
-        return "Saved!";
+        return greetingService.getAllGreetings();
     }
     
 }
