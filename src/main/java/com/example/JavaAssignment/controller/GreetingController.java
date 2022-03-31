@@ -1,7 +1,8 @@
 package com.example.JavaAssignment.controller;
 
 import com.example.JavaAssignment.models.Greetings;
-import com.example.JavaAssignment.service.GreetingRepository;
+import com.example.JavaAssignment.service.GreetingService;
+
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//@RequestMapping("/greetings")
 @RestController
+@RequestMapping("/greetings")
 public class GreetingController {
     
-   @Autowired
-    GreetingRepository greetingRepository;
+    @Autowired
+    private GreetingService greetingService;  
    
   @GetMapping(path="/getGreetings")
     private List<Greetings> getAllGreetings(){
-        return (List<Greetings>) greetingRepository.findAll();
+        return greetingService.getAllGreetings();
     }
            
     /* @GetMapping("/greetings/{id}")
@@ -29,7 +30,7 @@ public class GreetingController {
     }
     */
     public Greetings getGreetingByLang(String lang){
-        List<Greetings> greetings= (List<Greetings>) greetingRepository.findAll();
+        List<Greetings> greetings= greetingService.getAllGreetings();
         for(Greetings greeting:greetings)
             if(greeting.getLanguage().equalsIgnoreCase(lang))
                 return greeting;
@@ -41,7 +42,7 @@ public class GreetingController {
         Greetings greetings=new Greetings();
         greetings.setGreeting(greeting);
         greetings.setLanguage(language);
-        greetingRepository.save(greetings);
+        greetingService.saveOrUpdate(greetings);
         return "Saved!";
     }
     
