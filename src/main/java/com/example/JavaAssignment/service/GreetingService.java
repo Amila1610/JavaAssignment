@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GreetingService {
     
     @Autowired
     private GreetingRepository greetingRepository;
     
-    //@Autowired
-    //JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
     
     public List<Greetings> getAllGreetings(){
         List<Greetings> greetings= new ArrayList<Greetings>();
